@@ -136,6 +136,56 @@ class AuthController extends Controller
 
     }
 
+    public function update(Request $request, User $user){
+        $validator = tap(Validator::make($request->all(),[
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|exists:users',
+            'password' => 'required|min:8|confirmed:password_confirmation',
+        ]), function (){
+            if(request()->hasFile(request()->image)){
+                Validator::make(request()->all(),[
+                    'image' => 'required|file|image',
+                ]);
+            }
+            if (request()->phone){
+                Validator::make(\request()->all(),[
+                    'phone' => 'required'
+                ]);
+            }
+        });
+
+
+        if($validator->fails()){
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' =>$message->first()
+            ]);
+        }
+        try {
+            $user->update([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'password' => Hash::make($request->input('password')),
+                'phone' => $request->input('phone') ?? '',
+            ]);
+            $this->storeImage($user);
+//            $token = $user->createToken('app')->accessToken;
+            return response([
+                'status' => true,
+                'message' => 'Success',
+//                'token' => $token,
+                'user' => $user
+            ]);
+        }catch (\Exception $exception){
+            return response([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 400);
+        }
+    }
+
     public function storeImage($user){
         $user->update([
             'image' => $this->imagePath('image', 'user', $user),
