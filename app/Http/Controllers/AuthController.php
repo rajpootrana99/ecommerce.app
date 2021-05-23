@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Http\Traits\GeneralTrait;
 use App\Models\User;
+use Faker\Core\File;
 use http\Env\Response;
 use http\Message;
 use Illuminate\Http\Request;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    use GeneralTrait;
     public function login(Request $request){
         try {
             $validator = Validator::make($request->all(),[
@@ -58,12 +61,23 @@ class AuthController extends Controller
 
     public function register(Request $request){
         /** @var User $user */
-        $validator = Validator::make($request->all(),[
-            'first_name' => 'required|min:3',
-            'last_name' => 'required|min:3',
+        $validator = tap(Validator::make($request->all(),[
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8'
-        ]);
+            'password' => 'required|min:8|confirmed:password_confirmation',
+        ]), function (){
+            if(request()->hasFile(request()->image)){
+                Validator::make(request()->all(),[
+                    'image' => 'required|file|image',
+                ]);
+            }
+            if (request()->phone){
+                Validator::make(\request()->all(),[
+                    'phone' => 'required'
+                ]);
+            }
+        });
 
 
         if($validator->fails()){
@@ -78,8 +92,10 @@ class AuthController extends Controller
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password'))
+                'password' => Hash::make($request->input('password')),
+                'phone' => $request->input('phone') ?? '',
             ]);
+            $this->storeImage($user);
             $token = $user->createToken('app')->accessToken;
             return response([
                 'status' => true,
@@ -118,6 +134,12 @@ class AuthController extends Controller
             ], 400);
         }
 
+    }
+
+    public function storeImage($user){
+        $user->update([
+            'image' => $this->imagePath('image', 'user', $user),
+        ]);
     }
 
 }
