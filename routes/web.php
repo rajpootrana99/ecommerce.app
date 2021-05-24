@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
+    return view('welcome');
 });
+
+Route::get('/index', function () {
+    return view('index');
+})->middleware(['is_admin'])->name('index');
+
+Route::resource('category', 'Admin\CategoryController')->middleware(['is_admin']);
+Route::resource('size', 'Admin\SizeController')->middleware(['is_admin']);
+Route::resource('color', 'Admin\ColorController')->middleware(['is_admin']);
+Route::resource('company', 'Admin\CompanyController')->middleware(['is_admin']);
+
+require __DIR__.'/auth.php';
