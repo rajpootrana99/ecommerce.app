@@ -4,14 +4,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dastone - Admin & Dashboard Template</title>
+    <title>Al-Haram Furniture's</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo-sm-dark.png') }}">
 
     <!-- App css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -33,8 +33,8 @@
                                 <a href="{{route('index')}}" class="logo logo-admin">
                                     <img src="{{ asset('assets/images/logo-sm-dark.png') }}" height="50" alt="logo" class="auth-logo">
                                 </a>
-                                <h4 class="mt-3 mb-1 font-weight-semibold text-white font-18">Let's Get Started Dastone</h4>
-                                <p class="text-muted  mb-0">Sign in to continue to Dastone.</p>
+                                <h4 class="mt-3 mb-1 font-weight-semibold text-white font-18">Let's Get Started Al-Haram Furniture's</h4>
+                                <p class="text-muted  mb-0">Sign in to continue to Al-Haram Furniture's.</p>
                             </div>
                         </div>
                         <div class="card-body p-0">

@@ -4,21 +4,14 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dastone - Admin & Dashboard Template</title>
+    <title>Al-haram furniture's</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    @if(\Auth::user()->parent_id != 0)
-        @php
-            $parent = \App\Models\User::where('id', '=', \Auth::user()->parent_id)->first()
-        @endphp
-        <link rel="shortcut icon" href="{{$parent->fav_icon}}">
-    @else
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-    @endif
+        <link rel="shortcut icon" href="{{ asset('assets/images/logo-sm-dark.png') }}">
 
 <!-- App css -->
     <link href="{{ asset('plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />

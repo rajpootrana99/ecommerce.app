@@ -3,13 +3,14 @@
     <!-- LOGO -->
     <div class="brand">
         <a href="{{ route('index') }}" class="logo">
-                    <span>
-                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="logo-small" class="logo-sm">
+                    <span style="color: #011592;">
+{{--                        <img src="{{ asset('assets/images/logo-sm.png') }}" alt="logo-small" class="logo-sm">--}}
+                        <h4><strong>Al - Haram Furniture's</strong></h4>
                     </span>
-            <span>
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-light">
-                        <img src="{{ asset('assets/images/logo-dark.png') }}" alt="logo-large" class="logo-lg logo-dark">
-                    </span>
+            {{--<span>
+                <img src="{{ asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-light">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="logo-large" class="logo-lg logo-dark">
+            </span>--}}
         </a>
     </div>
     <!--end logo-->
