@@ -27,8 +27,8 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('size.index') }}"><i class="ti-control-record"></i>Sizes</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('color.index') }}"><i class="ti-control-record"></i>Colors</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('company.index') }}"><i class="ti-control-record"></i>Companies</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sales-index.html"><i class="ti-control-record"></i>Product List</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sales-index.html"><i class="ti-control-record"></i>Product Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('product.index') }}"><i class="ti-control-record"></i>Product List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('productGallery.index') }}"><i class="ti-control-record"></i>Product Gallery</a></li>
                 </ul>
             </li>
         </ul>
