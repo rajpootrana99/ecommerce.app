@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductGalleryRequest;
+use App\Http\Traits\GeneralTrait;
+use App\Models\Product;
 use App\Models\ProductGallery;
 use Illuminate\Http\Request;
 
 class ProductGalleryController extends Controller
 {
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,10 @@ class ProductGalleryController extends Controller
      */
     public function index()
     {
-        //
+        $productGalleries = ProductGallery::all();
+        return view('productGallery.index', [
+            'productGalleries' => $productGalleries
+        ]);
     }
 
     /**
@@ -25,7 +32,10 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('productGallery.create', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -34,9 +44,11 @@ class ProductGalleryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductGalleryRequest $request)
     {
-        //
+        $productGallery = ProductGallery::create($request->all());
+        $this->storeImage($productGallery);
+        return redirect(route('productGallery.index'));
     }
 
     /**
@@ -58,7 +70,11 @@ class ProductGalleryController extends Controller
      */
     public function edit(ProductGallery $productGallery)
     {
-        //
+        $products = Product::all();
+        return view('ProductGallery.edit', [
+            'products' => $products,
+            'productGallery' => $productGallery,
+        ]);
     }
 
     /**
@@ -68,9 +84,11 @@ class ProductGalleryController extends Controller
      * @param  \App\Models\ProductGallery  $productGallery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductGallery $productGallery)
+    public function update(ProductGalleryRequest $request, ProductGallery $productGallery)
     {
-        //
+        $productGallery->update($request->all());
+        $this->storeImage($productGallery);
+        return redirect(route('productGallery.index'));
     }
 
     /**
@@ -81,6 +99,13 @@ class ProductGalleryController extends Controller
      */
     public function destroy(ProductGallery $productGallery)
     {
-        //
+        $productGallery->delete();
+        return redirect(route('productGallery.index'));
+    }
+
+    public function storeImage($product){
+        $product->update([
+            'product_image' => $this->imagePath('product_image', 'product', $product),
+        ]);
     }
 }

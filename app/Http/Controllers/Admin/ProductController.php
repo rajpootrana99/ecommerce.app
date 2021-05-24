@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Company;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,7 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('product.index', [
+            'products' => $products,
+        ]);
     }
 
     /**
@@ -25,7 +33,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $companies = Company::all();
+        $colors = Color::all();
+        $sizes = Size::all();
+        $categories = Category::all();
+        return view('product.create', [
+            'companies' => $companies,
+            'colors' => $colors,
+            'sizes' => $sizes,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -34,9 +51,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        Product::create($request->all());
+        return redirect(route('product.index'));
     }
 
     /**
@@ -58,7 +76,17 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $companies = Company::all();
+        $colors = Color::all();
+        $sizes = Size::all();
+        $categories = Category::all();
+        return view('product.edit', [
+            'companies' => $companies,
+            'colors' => $colors,
+            'sizes' => $sizes,
+            'categories' => $categories,
+            'product' => $product,
+        ]);
     }
 
     /**
@@ -68,9 +96,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return redirect(route('product.index'));
     }
 
     /**
@@ -81,6 +110,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect(route('product.index'));
     }
 }
