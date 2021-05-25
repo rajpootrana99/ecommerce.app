@@ -28,4 +28,5 @@ Route::resource('company', 'Admin\CompanyController')->middleware(['is_admin']);
 Route::resource('product', 'Admin\ProductController')->middleware(['is_admin']);
 Route::resource('productGallery', 'Admin\ProductGalleryController')->middleware(['is_admin']);
 
+
 require __DIR__.'/auth.php';
