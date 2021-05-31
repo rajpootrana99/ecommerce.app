@@ -21,6 +21,7 @@ Route::get('/index', function () {
     return view('index');
 })->middleware(['is_admin'])->name('index');
 
+Route::resource('user', 'Admin\UserController')->middleware(['is_admin']);
 Route::resource('category', 'Admin\CategoryController')->middleware(['is_admin']);
 Route::resource('size', 'Admin\SizeController')->middleware(['is_admin']);
 Route::resource('color', 'Admin\ColorController')->middleware(['is_admin']);

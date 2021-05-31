@@ -33,6 +33,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Image</th>
                                     <th>Model</th>
                                     <th>Description</th>
                                     <th>Category</th>
@@ -48,6 +49,7 @@
                                 @foreach($products as $product)
                                     <tr role="row">
                                         <td >{{ $product->id }}</td>
+                                        <td><img class="avatar-box" width="50px" height="50px" src="{{ asset('storage/'.$product->productGalleries()->latest()->first()->product_image) }}"></td>>
                                         <td>{{ $product->model_name }}</td>
                                         <td>{{ $product->description }}</td>
                                         <td>{{ $product->category->category_name }}</td>
