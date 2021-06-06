@@ -34,6 +34,12 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('productGallery.index') }}"><i class="ti-control-record"></i>Product Gallery</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="{{ route('order.index') }}"> <i data-feather="user" class="align-self-center menu-icon"></i><span>Orders</span></a>
+            </li>
+            <li>
+                <a href="{{ route('contactUs.index') }}"> <i data-feather="phone" class="align-self-center menu-icon"></i><span>Contact Us</span></a>
+            </li>
         </ul>
     </div>
 </div>

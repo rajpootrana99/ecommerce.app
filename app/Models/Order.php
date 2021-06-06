@@ -15,7 +15,23 @@ class Order extends Model
         'user_id',
     ];
 
+    public function getOrderStatusAttribute($attribute){
+        return $this->orderStatusOptions()[$attribute] ?? 0;
+    }
+
+    public function orderStatusOptions(){
+        return [
+            2 => 'Rejected',
+            1 => 'Confirmed',
+            0 => 'Pending',
+        ];
+    }
+
     public function products(){
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot('qty')->withTimestamps();
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
