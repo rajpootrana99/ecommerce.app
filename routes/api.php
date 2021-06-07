@@ -27,3 +27,6 @@ Route::get('logout', 'AuthController@logout')->middleware('auth:api');
 Route::get('index', 'AuthController@index')->middleware('auth:api');
 Route::post('update/{user}', 'AuthController@update')->middleware('auth:api');
 
+//Product Controller
+Route::get('products', 'ProductController@index');
+
