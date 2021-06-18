@@ -42,7 +42,11 @@
                                 @foreach($productGalleries as $productGallery)
                                     <tr role="row">
                                         <td >{{ $productGallery->id }}</td>
-                                        <td>{{ $productGallery->product->model_name }}</td>
+                                        @if(isset($productGallery->product->model_name))
+                                            <td>{{ $productGallery->product->model_name }}</td>
+                                        @else
+                                            <td>No Product Exist</td>
+                                        @endif
                                         <td><img style="height: 50px; width: 50px;" src="{{ asset('storage/'.$productGallery->product_image) }}"></td>
                                         <td >
                                             <div class="row">
