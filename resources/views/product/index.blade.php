@@ -52,6 +52,7 @@
                                         @if(isset($product->productGalleries()->latest()->first()->product_image))
                                         <td><img class="avatar-box" width="50px" height="50px" src="{{ asset('storage/'.$product->productGalleries()->latest()->first()->product_image) }}"></td>>
                                         @endif
+                                        <td></td>
                                         <td>{{ $product->model_name }}</td>
                                         <td>{{ $product->description }}</td>
                                         <td>{{ $product->category->category_name }}</td>
