@@ -42,6 +42,8 @@
                                     <th>Color</th>
                                     <th>Sale Price</th>
                                     <th>Cost Price</th>
+                                    <th>Quantity</th>
+                                    <th>Stock</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -57,15 +59,25 @@
                                         <td>{{ $product->model_name }}</td>
                                         <td>{{ $product->description }}</td>
                                         <td>{{ $product->category->category_name }}</td>
-                                        <td>{{ $product->size->size_name }}</td>
+                                        <td>@foreach($product->sizes as $size)
+                                                <span class="badge badge-info">{{ $size->size_name }}</span>
+                                            @endforeach</td>
                                         @if(isset($product->company->company_name))
                                             <td>{{ $product->company->company_name }}</td>
                                         @else
                                             <td></td>
                                         @endif
-                                        <td style="background-color: {{ $product->color->color_name }}; color: white;">{{ $product->color->color_name }}</td>
+                                        <td>@foreach($product->colors as $color)
+                                                <i class="fa fa-circle" style="color: {{ $color->color_name }}"></i></span>
+                                            @endforeach</td>
                                         <td>{{ $product->sale_price }}</td>
                                         <td>{{ $product->cost_price }}</td>
+                                        <td>{{ $product->qty }}</td>
+                                        <td>@if($product->qty<1)
+                                            <span class="badge badge-danger">Out of Stock</span>
+                                            @else
+                                            <span class="badge badge-success">In Stock</span>
+                                            @endif</td>
                                         <td >
                                             <div class="row">
                                                 <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">

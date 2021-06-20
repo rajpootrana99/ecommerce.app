@@ -10,26 +10,25 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'size_id',
-        'color_id',
         'category_id',
         'company_id',
         'model_name',
         'description',
         'sale_price',
         'cost_price',
+        'qty',
     ];
 
-    public function size(){
-        return $this->belongsTo(Size::class);
+    public function sizes(){
+        return $this->belongsToMany(Size::class);
     }
 
     public function category(){
         return $this->belongsTo(Category::class);
     }
 
-    public function color(){
-        return $this->belongsTo(Color::class);
+    public function colors(){
+        return $this->belongsToMany(Color::class);
     }
 
     public function company(){

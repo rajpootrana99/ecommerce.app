@@ -53,7 +53,13 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        Product::create($request->all());
+        $check = request()->validate([
+            'size_id' => 'required',
+            'color_id' => 'required',
+        ]);
+        $product = Product::create($request->all());
+        $product->sizes()->attach(request()->size_id);
+        $product->colors()->attach(request()->color_id);
         return redirect(route('product.index'));
     }
 
@@ -110,6 +116,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $product->sizes()->detach($product->size_id);
+        $product->colors()->detach($product->color_id);
         $product->delete();
         return redirect(route('product.index'));
     }

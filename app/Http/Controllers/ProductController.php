@@ -19,7 +19,7 @@ class ProductController extends Controller
             ->join('companies', 'companies.id', '=', 'company_id')
             ->join('sizes', 'sizes.id', '=', 'size_id')
             ->join('product_galleries', 'product_galleries.product_id', '=', 'product_id')
-            ->get(['products.*', 'colors.color_name', 'companies.company_name',
+            ->get(['products.model_name', 'products.description', 'products.sale_price', 'colors.color_name', 'companies.company_name',
                 'sizes.size_name', 'categories.category_name', 'product_galleries.product_image']);
         return response([
             'status' => true,

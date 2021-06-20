@@ -67,10 +67,12 @@
                                     <div class="form-group row">
                                         <label for="description" class="col-sm-3 col-form-label text-right">Size</label>
                                         <div class="col-sm">
-                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="size_id">
+                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="size_id[]" multiple>
                                                 <option value="">Select Size</option>
                                                 @foreach($sizes as $size)
-                                                    <option value="{{ $size->id }}"{{ $size->id == $product->size_id ? 'selected' : ''}}>{{ $size->size_name }}</option>
+                                                    @foreach($product->sizes as $sizeselect)
+                                                        <option value="{{ $size->id }}"{{ $size->id == $sizeselect->id ? 'selected' : ''}}>{{ $size->size_name }}</option>
+                                                    @endforeach
                                                 @endforeach
                                             </select>
                                             <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('size_id') }}</div>
@@ -95,10 +97,12 @@
                                     <div class="form-group row">
                                         <label for="description" class="col-sm-3 col-form-label text-right">Color</label>
                                         <div class="col-sm">
-                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="color_id">
+                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="color_id[]" multiple>
                                                 <option value="">Select Color</option>
                                                 @foreach($colors as $color)
-                                                    <option value="{{ $color->id }}"{{ $color->id == $product->color_id ? 'selected' : ''}}>{{ $color->color_name }}</option>
+                                                    @foreach($product->colors as $colorselect)
+                                                        <option value="{{ $color->id }}"{{ $color->id == $colorselect->id ? 'selected' : ''}}>{{ $color->color_name }}</option>
+                                                    @endforeach
                                                 @endforeach
                                             </select>
                                             <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('color_id') }}</div>
@@ -120,6 +124,15 @@
                                         <div class="col-sm">
                                             <input class="form-control" type="text" value="{{ $product->cost_price }}" name="cost_price" id="validatedCustomFile" placeholder="Cost Price">
                                             <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('cost_price') }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group row">
+                                        <label for="cost_price" class="col-sm-3 col-form-label text-right">Quantity</label>
+                                        <div class="col-sm">
+                                            <input class="form-control" type="number" value="{{ $product->qty }}" name="qty" id="validatedCustomFile" placeholder="Qty">
+                                            <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('qty') }}</div>
                                         </div>
                                     </div>
                                 </div>

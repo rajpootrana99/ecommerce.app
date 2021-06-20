@@ -66,7 +66,7 @@
                                     <div class="form-group row">
                                         <label for="description" class="col-sm-3 col-form-label text-right">Size</label>
                                         <div class="col-sm">
-                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="size_id">
+                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="size_id[]" multiple>
                                                 <option value="">Select Size</option>
                                                 @foreach($sizes as $size)
                                                     <option value="{{ $size->id }}">{{ $size->size_name }}</option>
@@ -94,7 +94,7 @@
                                     <div class="form-group row">
                                         <label for="description" class="col-sm-3 col-form-label text-right">Color</label>
                                         <div class="col-sm">
-                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="color_id">
+                                            <select class="select2 form-control mb-3 custom-select" style="width: 100%; height:36px;" name="color_id[]" multiple>
                                                 <option value="">Select Color</option>
                                                 @foreach($colors as $color)
                                                     <option value="{{ $color->id }}">{{ $color->color_name }}</option>
@@ -119,6 +119,15 @@
                                         <div class="col-sm">
                                             <input class="form-control" type="text" value="{{ old('cost_price') }}" name="cost_price" id="validatedCustomFile" placeholder="Cost Price">
                                             <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('cost_price') }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group row">
+                                        <label for="cost_price" class="col-sm-3 col-form-label text-right">Quantity</label>
+                                        <div class="col-sm">
+                                            <input class="form-control" type="number" value="{{ old('qty') }}" name="qty" id="validatedCustomFile" placeholder="Qty">
+                                            <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('qty') }}</div>
                                         </div>
                                     </div>
                                 </div>
