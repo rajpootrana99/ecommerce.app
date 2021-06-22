@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->string('sale_price');
             $table->string('cost_price');
             $table->string('qty');
+            $table->string('is_popular')->default(0);
             $table->timestamps();
         });
     }

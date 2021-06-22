@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class DealRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,8 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return tap([
-            'category_name' => 'required'
-        ], function (){
-            if(request()->hasFile(request()->icon)){
-                request()->validate([
-                    'icon' => 'required|file|image',
-                ]);
-            }
-        });
+        return [
+            'image' => 'required|file|image',
+        ];
     }
 }

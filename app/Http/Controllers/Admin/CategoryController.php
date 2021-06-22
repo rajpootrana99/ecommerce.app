@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Traits\GeneralTrait;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    use GeneralTrait;
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +42,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
+        $category = Category::create($request->all());
+        $this->storeImage($category);
         return redirect(route('category.index'));
     }
 
@@ -78,6 +81,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
+        $this->storeImage($category);
         return redirect(route('category.index'));
     }
 
@@ -91,5 +95,11 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect(route('category.index'));
+    }
+
+    public function storeImage($category){
+        $category->update([
+            'icon' => $this->imagePath('icon', 'category', $category),
+        ]);
     }
 }

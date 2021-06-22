@@ -121,4 +121,11 @@ class ProductController extends Controller
         $product->delete();
         return redirect(route('product.index'));
     }
+
+    public function updatePopular(Product $product, Request $request){
+        $product->update([
+            'is_popular' => $request->is_popular,
+        ]);
+        return redirect(route('product.index'));
+    }
 }

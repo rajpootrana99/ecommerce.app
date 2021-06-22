@@ -40,6 +40,9 @@
             <li>
                 <a href="{{ route('contactUs.index') }}"> <i data-feather="phone" class="align-self-center menu-icon"></i><span>Contact Us</span></a>
             </li>
+            <li>
+                <a href="{{ route('deal.index') }}"> <i data-feather="droplet" class="align-self-center menu-icon"></i><span>Deals</span></a>
+            </li>
         </ul>
     </div>
 </div>

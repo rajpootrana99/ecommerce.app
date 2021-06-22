@@ -44,6 +44,7 @@
                                     <th>Cost Price</th>
                                     <th>Quantity</th>
                                     <th>Stock</th>
+                                    <th>Popular</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -78,6 +79,27 @@
                                             @else
                                             <span class="badge badge-success">In Stock</span>
                                             @endif</td>
+                                        <td><div class="custom-control custom-switch switch-success">
+                                            @if($product->is_popular == 'Popular')
+                                                <form id="{{ 'notPopular_'.$product->id }}" method="post" action="{{ route('product.updatePopular', ['product' => $product]) }}">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <input type="hidden" name="is_popular" value="0">
+                                                        <input type="checkbox" onchange="document.getElementById('{{'notPopular_'.$product->id}}').submit()" class="custom-control-input" id="customSwitchSuccess" checked>
+                                                    <label class="custom-control-label" for="customSwitchSuccess"></label>
+                                                </form>
+                                            @endif
+                                            @if($product->is_popular == 'Not Popular')
+                                                <form id="{{ 'popular_'.$product->id }}" method="post" action="{{ route('product.updatePopular', ['product' => $product]) }}">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <input type="hidden" name="is_popular" value="1">
+                                                        <input type="checkbox" onchange="document.getElementById('{{'popular_'.$product->id}}').submit()" class="custom-control-input" id="customSwitchSuccess">
+                                                    <label class="custom-control-label" for="customSwitchSuccess"></label>
+                                                </form>
+                                            @endif
+                                            </div>
+                                        </td>
                                         <td >
                                             <div class="row">
                                                 <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">

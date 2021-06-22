@@ -29,4 +29,7 @@ Route::post('update/{user}', 'AuthController@update')->middleware('auth:api');
 
 //Product Controller
 Route::get('products', 'ProductController@index');
+Route::get('deals', 'DealController@index');
+Route::get('categories', 'CategoryController@index');
+Route::post('contactus', 'ContactUsController@store');
 

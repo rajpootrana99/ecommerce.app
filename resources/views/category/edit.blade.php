@@ -23,11 +23,22 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <form method="post" action="{{route('category.update', ['category' => $category])}}">
+                    <form method="post" action="{{route('category.update', ['category' => $category])}}" enctype="multipart/form-data">
                         @method('PATCH')
                         @csrf
                         <div class="card-header">
-                            <h4 class="card-title">Categories</h4>
+                            <h4 class="card-title">Category Icon</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <img src="{{ asset('storage/'.$category->icon) }}" style="height: 300px; width: auto" alt="" class="img-fluid mb-3">
+                            <div class="custom-file mb-3">
+                                <input type="file" name="icon" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('icon') }}</div>
+                        </div><!--end card-body-->
+                        <div class="card-header">
+                            <h4 class="card-title">Category</h4>
                         </div><!--end card-header-->
                         <div class="card-body">
                             <div class="row">

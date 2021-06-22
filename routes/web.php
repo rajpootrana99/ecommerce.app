@@ -27,9 +27,11 @@ Route::resource('size', 'Admin\SizeController')->middleware(['is_admin']);
 Route::resource('color', 'Admin\ColorController')->middleware(['is_admin']);
 Route::resource('company', 'Admin\CompanyController')->middleware(['is_admin']);
 Route::resource('product', 'Admin\ProductController')->middleware(['is_admin']);
+Route::patch('product/updatePopular/{product}', 'Admin\ProductController@updatePopular')->name('product.updatePopular')->middleware(['is_admin']);
 Route::resource('productGallery', 'Admin\ProductGalleryController')->middleware(['is_admin']);
 Route::resource('order', 'Admin\OrderController')->middleware(['is_admin']);
 Route::patch('order/updateStatus/{order}', 'Admin\OrderController@updateStatus')->name('order.updateStatus')->middleware(['is_admin']);
 Route::resource('contactUs', 'Admin\ContactUsController')->middleware(['is_admin']);
+Route::resource('deal', 'Admin\DealController')->middleware(['is_admin']);
 
 require __DIR__.'/auth.php';

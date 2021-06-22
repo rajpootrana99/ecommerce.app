@@ -8,9 +8,9 @@
                 <div class="page-title-box">
                     <div class="row">
                         <div class="col">
-                            <h4 class="page-title">Categories</h4>
+                            <h4 class="page-title">Deals</h4>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0);">Categories</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Deals</a></li>
                                 <li class="breadcrumb-item active">List</li>
                             </ol>
                         </div><!--end col-->
@@ -23,8 +23,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title mt-4">Categories
-                            <a href="{{ route('category.create') }}" class="btn btn-primary" style="float:right;margin-left: 10px"><i class="fa fa-plus"></i> New Category </a>
+                        <div class="card-title mt-4">Deals
+                            <a href="{{ route('deal.create') }}" class="btn btn-primary" style="float:right;margin-left: 10px"><i class="fa fa-plus"></i> New Product Image </a>
                         </div>
                     </div><!--end card-header-->
                     <div class="card-body">
@@ -33,28 +33,24 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Icon</th>
-                                    <th>Category Name</th>
+                                    <th>Deals</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($categories as $category)
+                                @foreach($deals as $deal)
                                     <tr role="row">
-                                        <td >{{ $category->id }}</td>
-                                        @if(isset($category->icon))
-                                            <td><img class="avatar-box" width="50px" height="50px" src="{{ asset('storage/'.$category->icon) }}"></td>>
-                                        @endif
-                                        <td>{{ $category->category_name }}</td>
+                                        <td>{{ $deal->id }}</td>
+                                        <td><img style="height: 50px; width: 50px;" src="{{ asset('storage/'.$deal->image) }}"></td>
                                         <td >
                                             <div class="row">
-                                                <a href="{{ route('category.edit', ['category' => $category]) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">
+                                                <a href="{{ route('deal.edit', ['deal' => $deal]) }}" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <form id="{{ 'delete_'.$category->id }}" method="post" action="{{ route('category.destroy', ['category' => $category]) }}">
+                                                <form id="{{ 'delete_'.$deal->id }}" method="post" action="{{ route('deal.destroy', ['deal' => $deal]) }}">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <a onclick="document.getElementById('{{ 'delete_'.$category->id }}').submit()" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">
+                                                    <a onclick="document.getElementById('{{ 'delete_'.$deal->id }}').submit()" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="View">
                                                         <i class="fa fa-trash"></i>
                                                     </a>
                                                 </form>

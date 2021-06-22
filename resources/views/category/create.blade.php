@@ -23,10 +23,17 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <form method="post" action="{{route('category.store')}}">
+                    <form method="post" action="{{route('category.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-header">
-                            <h4 class="card-title">Categories</h4>
+                            <h4 class="card-title">Category Icon</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <input type="file" id="input-file-now" name="icon" class="dropify" />
+                            <div style="color: #ff0000; font-size: x-small; margin-top: 3px;">{{ $errors->first('icon') }}</div>
+                        </div><!--end card-body-->
+                        <div class="card-header">
+                            <h4 class="card-title">Category</h4>
                         </div><!--end card-header-->
                         <div class="card-body">
                             <div class="row">

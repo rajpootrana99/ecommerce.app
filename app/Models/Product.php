@@ -17,7 +17,19 @@ class Product extends Model
         'sale_price',
         'cost_price',
         'qty',
+        'is_popular'
     ];
+
+    public function getIsPopularAttribute($attribute){
+        return $this->isPopularOptions()[$attribute] ?? 0;
+    }
+
+    public function isPopularOptions(){
+        return [
+            1 => 'Popular',
+            0 => 'Not Popular',
+        ];
+    }
 
     public function sizes(){
         return $this->belongsToMany(Size::class);
