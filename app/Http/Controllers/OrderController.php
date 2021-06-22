@@ -29,7 +29,7 @@ class OrderController extends Controller
                 'order_date' => date("Y/m/d"),
                 'payment_method' => $request->payment_method,
             ]);
-            $order->products()->attach($request->product_id);
+            $order->products()->attach($request->product_id, ['qty' => $request->qty]);
             return response([
                 'status' => true,
                 'message' => 'Order Created Successfully',
