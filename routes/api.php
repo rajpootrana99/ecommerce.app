@@ -32,4 +32,4 @@ Route::get('products', 'ProductController@index');
 Route::get('deals', 'DealController@index');
 Route::get('categories', 'CategoryController@index');
 Route::post('contactus', 'ContactUsController@store');
-
+Route::post('orders', 'OrderController@makeOrder')->middleware('auth:api');
