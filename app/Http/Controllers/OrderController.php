@@ -11,7 +11,6 @@ class OrderController extends Controller
     public function makeOrder(Request $request){
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
-            'order_date' => 'required',
             'payment_method' => 'required',
             'product_id' => 'required',
         ]);
