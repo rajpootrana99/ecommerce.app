@@ -14,13 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::join('categories', 'categories.id', '=', 'category_id')
-            ->join('colors', 'colors.id', '=', 'color_id')
-            ->join('companies', 'companies.id', '=', 'company_id')
-            ->join('sizes', 'sizes.id', '=', 'size_id')
-            ->join('product_galleries', 'product_galleries.product_id', '=', 'product_id')
-            ->get(['products.model_name', 'products.description', 'products.sale_price', 'colors.color_name', 'companies.company_name',
-                'sizes.size_name', 'categories.category_name', 'product_galleries.product_image']);
+        $products = Product::with('category', 'sizes', 'company', 'colors', 'productGalleries')->get();
         return response([
             'status' => true,
             'data' => $products,
