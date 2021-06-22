@@ -13,6 +13,7 @@ class OrderController extends Controller
             'user_id' => 'required',
             'payment_method' => 'required',
             'product_id' => 'required',
+            'qty' => 'required',
         ]);
 
         if ($validator->fails()) {
