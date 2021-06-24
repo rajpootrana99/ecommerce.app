@@ -85,7 +85,7 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="is_popular" value="0">
-                                                        <input type="checkbox" onchange="document.getElementById('{{'notPopular_'.$product->id}}').submit()" class="custom-control-input" id="customSwitchSuccess" checked>
+                                                        <input type="checkbox" onclick="document.getElementById('{{ 'notPopular_'.$product->id }}').submit()" class="custom-control-input" id="customSwitchSuccess" checked>
                                                     <label class="custom-control-label" for="customSwitchSuccess"></label>
                                                 </form>
                                             @endif
@@ -94,7 +94,7 @@
                                                     @csrf
                                                     @method('PATCH')
                                                     <input type="hidden" name="is_popular" value="1">
-                                                        <input type="checkbox" onchange="document.getElementById('{{'popular_'.$product->id}}').submit()" class="custom-control-input" id="customSwitchSuccess">
+                                                        <input type="checkbox" onclick="document.getElementById('{{ 'popular_'.$product->id }}').submit()" class="custom-control-input" id="customSwitchSuccess">
                                                     <label class="custom-control-label" for="customSwitchSuccess"></label>
                                                 </form>
                                             @endif
