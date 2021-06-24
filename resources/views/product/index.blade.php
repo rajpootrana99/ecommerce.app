@@ -79,23 +79,19 @@
                                             @else
                                             <span class="badge badge-success">In Stock</span>
                                             @endif</td>
-                                        <td><div class="custom-control custom-switch switch-success">
+                                        <td><div class="text-center">
                                             @if($product->is_popular == 'Popular')
                                                 <form id="{{ 'notPopular_'.$product->id }}" method="post" action="{{ route('product.updatePopular', ['product' => $product]) }}">
-                                                    @csrf
                                                     @method('PATCH')
-                                                    <input type="hidden" name="is_popular" value="0">
-                                                        <input type="checkbox" onclick="document.getElementById('{{ 'notPopular_'.$product->id }}').submit()" class="custom-control-input" id="customSwitchSuccess" checked>
-                                                    <label class="custom-control-label" for="customSwitchSuccess"></label>
+                                                    @csrf
+                                                        <input type="checkbox" name="is_popular" value="0" onchange="document.getElementById('{{ 'notPopular_'.$product->id }}').submit()" checked>
                                                 </form>
                                             @endif
                                             @if($product->is_popular == 'Not Popular')
                                                 <form id="{{ 'popular_'.$product->id }}" method="post" action="{{ route('product.updatePopular', ['product' => $product]) }}">
-                                                    @csrf
                                                     @method('PATCH')
-                                                    <input type="hidden" name="is_popular" value="1">
-                                                        <input type="checkbox" onclick="document.getElementById('{{ 'popular_'.$product->id }}').submit()" class="custom-control-input" id="customSwitchSuccess">
-                                                    <label class="custom-control-label" for="customSwitchSuccess"></label>
+                                                    @csrf
+                                                        <input type="checkbox" name="is_popular" value="1" onchange="document.getElementById('{{ 'popular_'.$product->id }}').submit()">
                                                 </form>
                                             @endif
                                             </div>

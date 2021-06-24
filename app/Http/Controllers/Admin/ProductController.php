@@ -124,7 +124,7 @@ class ProductController extends Controller
 
     public function updatePopular(Product $product, Request $request){
         $product->update([
-            'is_popular' => $request->is_popular,
+            'is_popular' => $request->is_popular ?? 0,
         ]);
         return redirect(route('product.index'));
     }
