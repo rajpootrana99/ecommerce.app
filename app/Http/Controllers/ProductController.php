@@ -52,6 +52,15 @@ class ProductController extends Controller
         ]);
     }
 
+    public function removeFromFavourite(Request $request){
+        $product = Product::where('id', $request->product_id)->first();
+        $product->users()->detach(Auth::id());
+        return response([
+            'status' => true,
+            'message' => 'Remove from Favourite'
+        ]);
+    }
+
     public function getFavourite(){
         $user = Auth::user();
         $products = $user->products()->with('category', 'sizes', 'company', 'colors', 'productGalleries')->get();
