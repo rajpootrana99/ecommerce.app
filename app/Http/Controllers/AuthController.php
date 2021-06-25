@@ -122,7 +122,7 @@ class AuthController extends Controller
 
     public function index(){
         try {
-            $user = User::all();
+            $user = User::with('addresses')->get();
             return response([
                 'status' => 'true',
                 'user' => $user

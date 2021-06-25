@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,6 +17,44 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category', 'sizes', 'company', 'colors', 'productGalleries')->get();
+        return response([
+            'status' => true,
+            'data' => $products,
+        ]);
+    }
+
+    public function search(Request $request){
+        if ($request->search){
+            $search = $request->input('search');
+            $products = Product::with('category', 'sizes', 'colors', 'company', 'productGalleries')
+                ->whereHas('category', function ($query) use ($search){
+                $query->where('category_name', 'like', '%'.$search.'%');
+            })->orWhere('model_name', 'like', '%'.$search.'%')->get();
+            return response([
+                'status' => true,
+                'data' => $products,
+            ]);
+        }
+        else {
+            return response([
+                'status' => false,
+                'data' => Product::all(),
+            ]);
+        }
+    }
+
+    public function addToFavourite(Request $request){
+        $product = Product::where('id', $request->product_id)->first();
+        $product->users()->attach(Auth::id());
+        return response([
+            'status' => true,
+            'message' => 'Add to Favourite'
+        ]);
+    }
+
+    public function getFavourite(){
+        $user = Auth::user();
+        $products = $user->products()->with('category', 'sizes', 'company', 'colors', 'productGalleries')->get();
         return response([
             'status' => true,
             'data' => $products,
