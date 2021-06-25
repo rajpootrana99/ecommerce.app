@@ -38,10 +38,11 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
-            'payment_method' => 'required',
-            'product_id' => 'required',
-            'qty' => 'required',
+            'address' => 'required',
+            'area' => 'required',
+            'postal_code' => 'required',
+            'city' => 'required',
+            'province' => 'required',
         ]);
 
         if ($validator->fails()) {
