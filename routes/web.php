@@ -33,5 +33,6 @@ Route::resource('order', 'Admin\OrderController')->middleware(['is_admin']);
 Route::patch('order/updateStatus/{order}', 'Admin\OrderController@updateStatus')->name('order.updateStatus')->middleware(['is_admin']);
 Route::resource('contactUs', 'Admin\ContactUsController')->middleware(['is_admin']);
 Route::resource('deal', 'Admin\DealController')->middleware(['is_admin']);
+Route::resource('notification', 'Admin\NotificationController')->middleware(['is_admin']);
 
 require __DIR__.'/auth.php';

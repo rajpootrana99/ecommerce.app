@@ -43,6 +43,9 @@
             <li>
                 <a href="{{ route('deal.index') }}"> <i data-feather="droplet" class="align-self-center menu-icon"></i><span>Deals</span></a>
             </li>
+            <li>
+                <a href="{{ route('notification.index') }}"> <i data-feather="message-square" class="align-self-center menu-icon"></i><span>Notifications</span></a>
+            </li>
         </ul>
     </div>
 </div>
