@@ -70,6 +70,25 @@ class ProductController extends Controller
         ]);
     }
 
+    public function getPopularProducts(){
+        $products = Product::where('is_popular', 1)->get();
+        return response([
+            'status' => true,
+            'data' => $products,
+        ]);
+    }
+
+    public function productsByCategory(Request $request){
+        $products = Product::with('category', 'sizes', 'company', 'colors', 'productGalleries')
+            ->whereHas('category', function ($query) use ($request){
+                $query->where('category_name', $request->category_name);
+            })->get();
+        return response([
+            'status' => true,
+            'data' => $products,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

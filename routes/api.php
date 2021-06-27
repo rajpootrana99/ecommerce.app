@@ -29,7 +29,9 @@ Route::post('update/{user}', 'AuthController@update')->middleware('auth:api');
 
 //Product Controller
 Route::get('products', 'ProductController@index');
+Route::get('getPopularProducts', 'ProductController@getPopularProducts');
 Route::post('filterProducts', 'ProductController@search');
+Route::post('productsByCategory', 'ProductController@productsByCategory');
 Route::post('addToFavourite', 'ProductController@addToFavourite')->middleware('auth:api');
 Route::post('removeFromFavourite', 'ProductController@removeFromFavourite')->middleware('auth:api');
 Route::get('getFavourite', 'ProductController@getFavourite')->middleware('auth:api');
@@ -38,3 +40,5 @@ Route::get('categories', 'CategoryController@index');
 Route::post('contactus', 'ContactUsController@store');
 Route::post('orders', 'OrderController@makeOrder')->middleware('auth:api');
 Route::post('address', 'AddressController@store')->middleware('auth:api');
+Route::get('notifications', 'NotificationController@index');
+
