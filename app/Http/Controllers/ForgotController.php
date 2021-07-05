@@ -10,6 +10,7 @@ use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ForgotController extends Controller
@@ -47,7 +48,20 @@ class ForgotController extends Controller
         }
     }
 
-    public function reset(ResetRequest $request){
+    public function reset(Request $request){
+        $validator = Validator::make($request->all(),[
+            'token' => 'required',
+            'password' => 'required|min:8',
+            'password_confirm' => 'required|same:password'
+        ]);
+
+        if($validator->fails()){
+            $message = $validator->errors();
+            return collect([
+                'status' => false,
+                'message' =>$message->first()
+            ]);
+        }
         /** @var User $user */
         $token = $request->input('token');
         if(!$passwordResets = DB::table('password_resets')->where('token', $token)->first()){
