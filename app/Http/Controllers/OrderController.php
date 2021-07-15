@@ -101,7 +101,7 @@ class OrderController extends Controller
     }
 
     public function viewCart(){
-        $order = Order::with('products')->where('user_id', Auth::id())
+        $order = Order::with('products.sizes', 'products.category', 'products.colors', 'products.company', 'products.productGalleries')->where('user_id', Auth::id())
             ->where('order_type', 0)->first();
         return response([
             'status' => true,
