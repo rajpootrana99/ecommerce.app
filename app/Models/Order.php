@@ -13,7 +13,19 @@ class Order extends Model
         'order_status',
         'payment_method',
         'user_id',
+        'order_type'
     ];
+
+    public function getOrderTypeAttribute($attribute){
+        return $this->orderTypeOptions()[$attribute] ?? 0;
+    }
+
+    public function orderTypeOptions(){
+        return [
+            1 => 'order confirm',
+            0 => 'add to cart',
+        ];
+    }
 
     public function getOrderStatusAttribute($attribute){
         return $this->orderStatusOptions()[$attribute] ?? 0;
