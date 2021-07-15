@@ -22,7 +22,7 @@ class ForgotController extends Controller
                 'message' => 'User doen\'t exists'
             ], 404);
         }
-        $token = Str::random(6);
+        $token = random_int(1000, 9999);
 
         try {
             DB::table('password_resets')->insert([
