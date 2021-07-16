@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -51,8 +52,10 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $address = Address::with('user')->where('user_id', $order->user_id)->first();
         return view('order.show', [
-            'order' => $order
+            'order' => $order,
+            'address' => $address,
         ]);
     }
 

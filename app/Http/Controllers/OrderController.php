@@ -91,7 +91,7 @@ class OrderController extends Controller
     public function removeFromCart(Request $request){
         $product = Product::where('id', $request->product_id)->first();
         $product->orders()->detach($product->order_id);
-        $cart = Order::with('products')->where('user_id', Auth::id())
+        $cart = Order::with('products.sizes', 'products.category', 'products.colors', 'products.company', 'products.productGalleries')->where('user_id', Auth::id())
             ->where('order_type', 0)->first();
         return response([
             'status' => true,
