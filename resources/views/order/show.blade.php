@@ -71,8 +71,8 @@
                                     <address class="font-13">
                                         <strong class="font-14">Billed To :</strong><br>
                                         {{ $order->user->first_name }} {{ $order->user->last_name }}<br>
-                                        795 Folsom Ave<br>
-                                        San Francisco, CA 94107<br>
+                                        {{ $address->address }}<br>
+                                        {{ $address->area }}, {{ $address->city }}<br>
                                         <abbr title="Phone">P:</abbr> {{ $order->user->phone }}
                                     </address>
                                 </div>
