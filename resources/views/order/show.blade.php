@@ -97,6 +97,8 @@
                                         <thead class="thead-light">
                                         <tr>
                                             <th class="col-md-8">Products</th>
+                                            <th>Size</th>
+                                            <th>Color</th>
                                             <th>Qty</th>
                                             <th>Rate</th>
                                             <th>Subtotal</th>
@@ -110,9 +112,11 @@
                                                 <h5 class="mt-0 mb-1 font-14">{{ $product->category->category_name }} {{ $product->model_name }}</h5>
                                                 <p class="mb-0 text-muted">{{ $product->description }}</p>
                                             </td>
+                                            <td>{{ $product->pivot->size }}</td>
+                                            <td>{{ $product->pivot->color }}</td>
                                             <td>{{ $product->pivot->qty }}</td>
                                             <td>{{ $product->sale_price }}</td>
-                                            <td>{{ $product->sale_price*$product->pivot->qty }}</td>
+                                            <td>{{ $product->pivot->total }}</td>
                                         </tr><!--end tr-->
                                             <?php $total += $product->sale_price*$product->pivot->qty ?>
                                         @endforeach
@@ -120,7 +124,7 @@
                                         <tr>
                                             <td colspan="2" class="border-0"></td>
                                             <td class="border-0 font-14 text-dark"><b>Sub Total</b></td>
-                                            <td class="border-0 font-14 text-dark"><b>{{ $total }}</b></td>
+                                            <td class="border-0 font-14 text-dark"><b>{{ number_format($order->pivot->sum('total'). 2) }}</b></td>
                                         </tr><!--end tr-->
                                         <tr>
                                             <th colspan="2" class="border-0"></th>
