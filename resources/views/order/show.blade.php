@@ -124,7 +124,7 @@
                                         <tr>
                                             <td colspan="2" class="border-0"></td>
                                             <td class="border-0 font-14 text-dark"><b>Sub Total</b></td>
-                                            <td class="border-0 font-14 text-dark"><b>{{ number_format($order->pivot->sum('total'), 2) }}</b></td>
+                                            <td class="border-0 font-14 text-dark"><b>{{ number_format(array_sum($order->pivot->total), 2) }}</b></td>
                                         </tr><!--end tr-->
                                         <tr>
                                             <th colspan="2" class="border-0"></th>
