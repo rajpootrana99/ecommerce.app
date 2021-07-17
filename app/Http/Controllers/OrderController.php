@@ -47,10 +47,13 @@ class OrderController extends Controller
 
     public function addToCart(Request $request){
         $order = Order::where('order_type', 0)->where('user_id', Auth::id())->first();
+        $product = Product::where('id', $request->product_id)->first();
         if(!$order){
             $validator = Validator::make($request->all(), [
                 'product_id' => 'required',
                 'qty' => 'required',
+                'size' => 'required',
+                'color' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -65,11 +68,18 @@ class OrderController extends Controller
                     'user_id' => Auth::id(),
                     'order_date' => date("Y/m/d"),
                 ]);
-                $order->products()->attach($request->product_id, ['qty' => $request->qty]);
+                $order->products()->attach($request->product_id, [
+                    'qty' => $request->qty,
+                    'size' => $request->size,
+                    'color' => $request->color,
+                    'total' => $product->sale_price*$request->qty,
+                ]);
+                $cart = Order::with( 'products.category', 'products.company', 'products.productGalleries')->where('user_id', Auth::id())
+                    ->where('order_type', 0)->first();
                 return response([
                     'status' => true,
                     'message' => 'Product add to cart',
-                    'data' => $order,
+                    'data' => $cart,
                 ]);
             }catch (\Exception $exception){
                 return response([
@@ -79,11 +89,18 @@ class OrderController extends Controller
             }
         }
         else{
-            $order->products()->attach($request->product_id, ['qty' => $request->qty]);
+            $order->products()->attach($request->product_id, [
+                'qty' => $request->qty,
+                'size' => $request->size,
+                'color' => $request->color,
+                'total' => $product->sale_price*$request->qty,
+                ]);
+            $cart = Order::with( 'products.category', 'products.company', 'products.productGalleries')->where('user_id', Auth::id())
+                ->where('order_type', 0)->first();
             return response([
                 'status' => true,
                 'message' => 'Product add to cart',
-                'data' => $order,
+                'data' => $cart,
             ]);
         }
     }

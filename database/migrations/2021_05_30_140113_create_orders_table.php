@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('order_date');
             $table->string('order_status')->default(0);
-            $table->string('payment_method');
+            $table->string('payment_method')->nullable();
             $table->string('order_type')->default(0);
             $table->timestamps();
         });

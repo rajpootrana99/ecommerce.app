@@ -40,7 +40,7 @@ class Order extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('qty')->withTimestamps();
+        return $this->belongsToMany(Product::class)->withPivot('qty', 'size', 'color', 'total')->withTimestamps();
     }
 
     public function user(){

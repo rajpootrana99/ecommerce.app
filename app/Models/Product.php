@@ -52,7 +52,7 @@ class Product extends Model
     }
 
     public function orders(){
-        return $this->belongsToMany(Order::class)->withPivot('qty')->withTimestamps();
+        return $this->belongsToMany(Order::class)->withPivot('qty', 'size', 'color', 'total')->withTimestamps();
     }
 
     public function users(){
