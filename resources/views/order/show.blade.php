@@ -123,15 +123,21 @@
 
                                         <tr>
                                             <td colspan="2" class="border-0"></td>
+                                            <td colspan="2" class="border-0"></td>
+                                            <td colspan="2" class="border-0"></td>
                                             <td class="border-0 font-14 text-dark"><b>Sub Total</b></td>
                                             <td class="border-0 font-14 text-dark"><b>{{ $total }}</b></td>
                                         </tr><!--end tr-->
                                         <tr>
                                             <th colspan="2" class="border-0"></th>
+                                            <th colspan="2" class="border-0"></th>
+                                            <th colspan="2" class="border-0"></th>
                                             <td class="border-0 font-14 text-dark"><b>Tax Rate</b></td>
                                             <td class="border-0 font-14 text-dark"><b>0.00%</b></td>
                                         </tr><!--end tr-->
                                         <tr class="bg-black text-white">
+                                            <th colspan="2" class="border-0"></th>
+                                            <th colspan="2" class="border-0"></th>
                                             <th colspan="2" class="border-0"></th>
                                             <td class="border-0 font-14"><b>Total</b></td>
                                             <td class="border-0 font-14"><b>{{ $total }}</b></td>
