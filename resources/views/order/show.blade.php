@@ -71,8 +71,10 @@
                                     <address class="font-13">
                                         <strong class="font-14">Billed To :</strong><br>
                                         {{ $order->user->first_name }} {{ $order->user->last_name }}<br>
+                                        @if(count($address))
                                         {{ $address->address }}<br>
                                         {{ $address->area }}, {{ $address->city }}<br>
+                                        @endif
                                         <abbr title="Phone">P:</abbr> {{ $order->user->phone }}
                                     </address>
                                 </div>
@@ -82,8 +84,10 @@
                                     <address class="font-13">
                                         <strong class="font-14">Shipped To:</strong><br>
                                         {{ $order->user->first_name }} {{ $order->user->last_name }}<br>
+                                        @if(count($address))
                                         {{ $address->address }}<br>
                                         {{ $address->area }}, {{ $address->city }}<br>
+                                        @endif
                                         <abbr title="Phone">P:</abbr> {{ $order->user->phone }}
                                     </address>
                                 </div>

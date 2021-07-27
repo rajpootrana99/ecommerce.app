@@ -90,11 +90,7 @@ class OrderController extends Controller
             }
         }
         else{
-            $total = $order->total + $product->sale_price*$request->qty;
             $product = Product::where('id', $request->product_id)->first();
-            $order->update([
-                'total' => $total,
-            ]);
             if($product){
                 $pro = $product->orders()->first();
                 if ($pro){
@@ -107,9 +103,20 @@ class OrderController extends Controller
                             'color' => $request->color,
                             'total' => $product->sale_price*$qty,
                         ]);
+                        $total = 0;
+                        foreach($order->products as $products){
+                            $total = $total + $products->pivot->total;
+                        }
+                        $order->update([
+                            'total' => $total,
+                        ]);
                     }
                 }
                 else{
+                    $total = $order->total + $product->sale_price*$request->qty;
+                    $order->update([
+                        'total' => $total,
+                    ]);
                     $order->products()->attach($request->product_id, [
                         'qty' => $request->qty,
                         'size' => $request->size,
