@@ -36,22 +36,21 @@
                                     <li class="list-inline-item">
                                         <div class="pl-3">
                                             <i class="mdi mdi-web"></i>
-                                            <p class="text-muted mb-0">www.abcdefghijklmno.com</p>
-                                            <p class="text-muted mb-0">www.qrstuvwxyz.com</p>
+                                            <p class="text-muted mb-0">www.alharam.codingoverflow.com</p>
                                         </div>
                                     </li>
                                     <li class="list-inline-item">
                                         <div class="pl-3">
                                             <i class="mdi mdi-phone"></i>
-                                            <p class="text-muted mb-0">+123 123456789</p>
-                                            <p class="text-muted mb-0">+123 123456789</p>
+                                            <p class="text-muted mb-0">+92 313 5623562</p>
+                                            <p class="text-muted mb-0">+92 333 5225433</p>
                                         </div>
                                     </li>
                                     <li class="list-inline-item">
                                         <div class="pl-3">
                                             <i class="mdi mdi-map-marker"></i>
-                                            <p class="text-muted mb-0">2821 Kensington Road,</p>
-                                            <p class="text-muted mb-0">Avondale Estates, GA 30002 USA.</p>
+                                            <p class="text-muted mb-0">Nusarat Road</p>
+                                            <p class="text-muted mb-0">Near Bomanji Square, Multan.</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -163,19 +162,6 @@
                                     <small>Account Manager</small>
                                     <img src="assets/images/signature.png" alt="" class="mt-2 mb-1" height="26">
                                     <p class="border-top">Signature</p>
-                                </div>
-                            </div><!--end col-->
-                        </div><!--end row-->
-                        <hr>
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-lg-12 col-xl-4 ml-auto align-self-center">
-                                <div class="text-center"><small class="font-12">Thank you very much for doing business with us.</small></div>
-                            </div><!--end col-->
-                            <div class="col-lg-12 col-xl-4">
-                                <div class="float-right d-print-none">
-                                    <a href="javascript:window.print()" class="btn btn-soft-info btn-sm">Print</a>
-                                    <a href="#" class="btn btn-soft-primary btn-sm">Submit</a>
-                                    <a href="#" class="btn btn-soft-danger btn-sm">Cancel</a>
                                 </div>
                             </div><!--end col-->
                         </div><!--end row-->
