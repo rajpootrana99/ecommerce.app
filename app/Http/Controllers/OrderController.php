@@ -91,15 +91,33 @@ class OrderController extends Controller
         }
         else{
             $total = $order->total + $product->sale_price*$request->qty;
+            $product = Product::where('id', $request->product_id)->first();
             $order->update([
                 'total' => $total,
             ]);
-            $order->products()->attach($request->product_id, [
-                'qty' => $request->qty,
-                'size' => $request->size,
-                'color' => $request->color,
-                'total' => $product->sale_price*$request->qty,
-                ]);
+            if($product){
+                $pro = $product->orders()->first();
+                if ($pro){
+                    if ($pro->pivot->size == $request->size && $pro->pivot->color == $request->color){
+                        $qty = $pro->pivot->qty + $request->qty;
+                        $product->orders()->detach($product->order_id);
+                        $order->products()->attach($request->product_id, [
+                            'qty' => $qty,
+                            'size' => $request->size,
+                            'color' => $request->color,
+                            'total' => $product->sale_price*$qty,
+                        ]);
+                    }
+                }
+                else{
+                    $order->products()->attach($request->product_id, [
+                        'qty' => $request->qty,
+                        'size' => $request->size,
+                        'color' => $request->color,
+                        'total' => $product->sale_price*$request->qty,
+                    ]);
+                }
+            }
             $cart = Order::with( 'products.category', 'products.company', 'products.productGalleries')->where('user_id', Auth::id())
                 ->where('order_type', 0)->first();
             return response([
