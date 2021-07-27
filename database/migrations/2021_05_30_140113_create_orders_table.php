@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_status')->default(0);
             $table->string('payment_method')->nullable();
             $table->string('order_type')->default(0);
+            $table->string('total');
             $table->timestamps();
         });
     }

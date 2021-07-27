@@ -34,6 +34,7 @@
                                     <th>User Name</th>
                                     <th>Order Date</th>
                                     <th>Payment Method</th>
+                                    <th>Total</th>
                                     <th>Order Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -45,6 +46,7 @@
                                         <td>{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
                                         <td>{{ $order->order_date }}</td>
                                         <td>{{ $order->payment_method }}</td>
+                                        <td>{{ $order->total }}</td>
                                         <td>
                                         @if($order->order_status == 'Confirmed')
                                             <span class="badge badge-soft-success">{{ $order->order_status }}</span>

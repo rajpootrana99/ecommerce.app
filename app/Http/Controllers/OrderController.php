@@ -67,6 +67,7 @@ class OrderController extends Controller
                 $order = Order::create([
                     'user_id' => Auth::id(),
                     'order_date' => date("Y/m/d"),
+                    'total' => $product->sale_price*$request->qty,
                 ]);
                 $order->products()->attach($request->product_id, [
                     'qty' => $request->qty,
@@ -89,6 +90,10 @@ class OrderController extends Controller
             }
         }
         else{
+            $total = $order->total + $product->sale_price*$request->qty;
+            $order->update([
+                'total' => $total,
+            ]);
             $order->products()->attach($request->product_id, [
                 'qty' => $request->qty,
                 'size' => $request->size,

@@ -13,7 +13,8 @@ class Order extends Model
         'order_status',
         'payment_method',
         'user_id',
-        'order_type'
+        'order_type',
+        'total',
     ];
 
     public function getOrderTypeAttribute($attribute){
