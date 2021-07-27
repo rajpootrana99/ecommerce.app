@@ -71,7 +71,7 @@
                                     <address class="font-13">
                                         <strong class="font-14">Billed To :</strong><br>
                                         {{ $order->user->first_name }} {{ $order->user->last_name }}<br>
-                                        @if(count($address))
+                                        @if(isset($address))
                                         {{ $address->address }}<br>
                                         {{ $address->area }}, {{ $address->city }}<br>
                                         @endif
@@ -84,7 +84,7 @@
                                     <address class="font-13">
                                         <strong class="font-14">Shipped To:</strong><br>
                                         {{ $order->user->first_name }} {{ $order->user->last_name }}<br>
-                                        @if(count($address))
+                                        @if(isset($address))
                                         {{ $address->address }}<br>
                                         {{ $address->area }}, {{ $address->city }}<br>
                                         @endif
